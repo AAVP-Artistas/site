@@ -29,47 +29,47 @@
     if (mq.addEventListener) mq.addEventListener('change', fechar);
   }
 
-  // Notícias: cada cartão abre a notícia numa janela; o endereço guarda #noticia-NN
-  var noticias = document.querySelectorAll('.noticia');
-  if (noticias.length) {
-    var aberta = null, origem = null;
-    var abrir = function (id) {
-      var el = document.getElementById(id);
-      if (!el || !el.classList.contains('noticia')) return;
-      if (aberta && aberta !== el) aberta.classList.remove('aberta');
-      aberta = el;
-      el.classList.add('aberta');
-      el.scrollTop = 0;
-      root.classList.add('modal-aberta');
-      var f = el.querySelector('.fechar'); if (f) f.focus({ preventScroll: true });
-    };
-    var fechar = function () {
-      if (!aberta) return;
-      aberta.classList.remove('aberta'); aberta = null;
-      root.classList.remove('modal-aberta');
-      try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
-      if (origem) { origem.focus({ preventScroll: true }); origem = null; }
-    };
-    document.querySelectorAll('.cartao').forEach(function (c) {
-      c.addEventListener('click', function (e) {
-        e.preventDefault(); origem = c;
-        var id = c.getAttribute('href').slice(1);
-        abrir(id);
-        try { history.pushState(null, '', '#' + id); } catch (err) { location.hash = id; }
-      });
+  // Notícias: o cartão abre a notícia logo abaixo da sua linha; só uma aberta de cada vez
+  var cartoes = document.querySelectorAll('.cartao');
+  var abrirNoticia = function (id, rolar) {
+    cartoes.forEach(function (c) {
+      var alvo = document.getElementById(c.getAttribute('aria-controls'));
+      var esta = c.getAttribute('aria-controls') === id;
+      c.setAttribute('aria-expanded', esta ? 'true' : 'false');
+      if (alvo) alvo.classList.toggle('aberta', esta);
+      if (esta && rolar) c.scrollIntoView({ block: 'start' });
     });
-    document.querySelectorAll('.fechar').forEach(function (b) {
-      b.addEventListener('click', function (e) { e.preventDefault(); fechar(); });
+  };
+  cartoes.forEach(function (c) {
+    c.addEventListener('click', function (e) {
+      e.preventDefault();
+      var id = c.getAttribute('aria-controls');
+      var aberto = c.getAttribute('aria-expanded') === 'true';
+      abrirNoticia(aberto ? null : id, false);
+      try { history.replaceState(null, '', aberto ? location.pathname : '#' + id); } catch (err) {}
     });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechar(); });
-    var sincronizar = function () {
-      var id = location.hash.slice(1);
-      if (/^noticia-\d+$/.test(id)) abrir(id); else fechar();
-    };
-    window.addEventListener('popstate', sincronizar);
-    window.addEventListener('hashchange', sincronizar);
-    sincronizar();
-  }
+  });
+  document.querySelectorAll('.fechar').forEach(function (b) {
+    b.addEventListener('click', function (e) {
+      e.preventDefault();
+      var det = b.closest('.noticia-detalhe');
+      var c = det && document.querySelector('.cartao[aria-controls="' + det.id + '"]');
+      abrirNoticia(null, false);
+      try { history.replaceState(null, '', location.pathname); } catch (err) {}
+      if (c) { c.focus({ preventScroll: true }); c.scrollIntoView({ block: 'nearest' }); }
+    });
+  });
+
+  // Endereço com #id (ex.: noticias.html#noticia-12 ou comunicados.html#comunicado-07): abre e mostra
+  var abrirAlvo = function () {
+    var id = location.hash.slice(1);
+    if (!id) return;
+    if (/^noticia-\d+$/.test(id) && cartoes.length) { abrirNoticia(id, true); return; }
+    var el = document.getElementById(id);
+    if (el && el.tagName === 'DETAILS') { el.open = true; el.scrollIntoView(); }
+  };
+  window.addEventListener('hashchange', abrirAlvo);
+  abrirAlvo();
 
   // Ano no rodapé
   var ano = document.getElementById('ano');
