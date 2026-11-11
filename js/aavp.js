@@ -49,17 +49,6 @@
       try { history.replaceState(null, '', aberto ? location.pathname : '#' + id); } catch (err) {}
     });
   });
-  document.querySelectorAll('.fechar').forEach(function (b) {
-    b.addEventListener('click', function (e) {
-      e.preventDefault();
-      var det = b.closest('.noticia-detalhe');
-      var c = det && document.querySelector('.cartao[aria-controls="' + det.id + '"]');
-      abrirNoticia(null, false);
-      try { history.replaceState(null, '', location.pathname); } catch (err) {}
-      if (c) { c.focus({ preventScroll: true }); c.scrollIntoView({ block: 'nearest' }); }
-    });
-  });
-
   // Endereço com #id (ex.: noticias.html#noticia-12 ou comunicados.html#comunicado-07): abre e mostra
   var abrirAlvo = function () {
     var id = location.hash.slice(1);
