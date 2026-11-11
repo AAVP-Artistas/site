@@ -1,0 +1,212 @@
+/* AAVP — Associação de Artistas Visuais em Portugal
+   Folha de estilos comum a todas as páginas.
+   Desenho: Raquel (Figma "AAVP"). Fontes: Inter, SIL Open Font License (ver fonts/OFL.txt). */
+
+/* ---------- Fontes ---------- */
+@font-face { font-family: "Texto"; src: url("../fonts/Inter-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Texto"; src: url("../fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Display"; src: url("../fonts/InterDisplay-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Display"; src: url("../fonts/InterDisplay-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+/* ---------- Sistema do desenho ---------- */
+:root {
+  --amarelo: #FFFF00;
+  --vermelho: #E22633;
+  --cinza-1: #F2F2F2;
+  --cinza-2: #E4E4E4;
+  --preto: #000;
+  --margem: 10px;                        /* margem exterior e intervalo da grelha */
+  --pad: 10px;                           /* espaço interior dos blocos */
+  --ui: 14px;                            /* menus, barras, rodapé */
+  --corpo: 14px;                         /* texto corrido das páginas interiores */
+  --grande: clamp(34px, 2.78vw, 48px);   /* 40px a 1440px */
+  --orgaos: clamp(20px, 1.667vw, 28px);  /* 24px a 1440px */
+  --fundo: var(--cinza-1);
+  --bloco-a: var(--cinza-1);
+  --bloco-b: #fff;
+}
+.pagina-inicial { --fundo: var(--amarelo); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  background: var(--fundo);
+  color: var(--preto);
+  font-family: "Texto", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-size: var(--ui);
+  line-height: 1.2;
+  transition: background-color .25s ease;
+}
+main { flex: 1 0 auto; padding: 0 var(--margem); }
+a { color: inherit; text-decoration: none; }
+a:hover, a:focus-visible { color: var(--vermelho); }
+:focus-visible { outline: 2px solid var(--vermelho); outline-offset: 2px; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: var(--margem); top: -40px; background: var(--preto); color: #fff; padding: 4px 8px; z-index: 50; }
+.skip:focus { top: var(--margem); color: #fff; }
+
+/* ---------- Grelha de 12 colunas ---------- */
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--margem); }
+
+/* ---------- Cabeçalho ---------- */
+.site-header { padding: var(--margem) var(--margem) 0; text-transform: uppercase; position: relative; z-index: 10; }
+.brand { grid-column: 1 / 7; align-self: start; }
+.brand-short { display: none; }
+.menu-toggle { display: none; }
+.nav-wrap { grid-column: 7 / 13; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: var(--margem); }
+.nav-list { grid-column: 1 / 4; list-style: none; margin: 0; padding: 0; }
+.nav-adesao { grid-column: 4 / 7; align-self: start; }
+.nav-list a[aria-current="page"], .nav-adesao[aria-current="page"] { color: var(--vermelho); }
+
+/* ---------- Página inicial: triângulos e blocos ---------- */
+.hero { position: relative; margin-top: clamp(100px, 16.25vw, 260px); }
+.hero::before { content: ""; display: block; grid-column: 1 / -1; padding-top: 28.66%; }   /* 407/1420 */
+.tri { position: absolute; top: 0; width: 66.41%; height: auto; aspect-ratio: 943 / 888; z-index: 0; display: block; }
+.tri path { fill: var(--vermelho); }
+.tri-a { right: 0; }
+.tri-b { left: 0; margin-top: 30.49%; transform: rotate(180deg); }                        /* 433/1420 */
+
+.block {
+  position: relative; z-index: 1;
+  padding: var(--pad);
+  margin-top: var(--margem);
+  font-family: "Display", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  font-size: var(--grande);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.block p { margin: 0; }
+.block p + p { margin-top: 1.2em; }
+.block strong { font-weight: 700; }
+.block a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .12em; }
+.hero .block:first-of-type { margin-top: 0; }
+.block--full { grid-column: 1 / 13; }
+.block--right { grid-column: 5 / 13; }
+.block--a { background: var(--bloco-a); }
+.block--b { background: var(--bloco-b); }
+
+/* ---------- Órgãos sociais ---------- */
+.orgaos { margin-top: 150px; font-family: "Display", "Helvetica Neue", Arial, sans-serif; font-weight: 300; font-size: var(--orgaos); line-height: 1.2; }
+.orgao + .orgao { margin-top: 1.2em; }
+.orgao h3 { margin: 0; font-size: inherit; font-weight: 700; text-transform: uppercase; }
+.orgao dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; column-gap: .6em; }
+.orgao dt, .orgao dd { margin: 0; }
+
+/* ---------- Páginas interiores: barras que abrem e fecham ---------- */
+.seccoes { margin-top: clamp(80px, 17.4vw, 250px); }               /* primeira barra a 352px do topo, a 1440px */
+.seccao + .seccao { margin-top: 5px; }
+.seccao > summary {
+  display: flex; justify-content: space-between; align-items: center;
+  min-height: 27px; padding: 4px 5px;
+  background: var(--cinza-2);
+  text-transform: uppercase;
+  cursor: pointer; list-style: none;
+}
+.seccao > summary::-webkit-details-marker { display: none; }
+.seccao > summary::after { content: "+"; font-size: 16px; line-height: 1; padding-left: 1em; }
+.seccao[open] > summary::after { content: "–"; }
+.seccao > summary:hover { color: var(--vermelho); }
+.seccao-corpo {
+  padding: 20px 5px 40px;
+  font-weight: 300;
+  font-size: var(--corpo);
+  line-height: 1.35;
+  max-width: 980px;
+}
+.seccao-corpo p { margin: 0; }
+.seccao-corpo p + p, .seccao-corpo p + ol, .seccao-corpo p + ul, .seccao-corpo ol + p, .seccao-corpo ul + p { margin-top: 1em; }
+.seccao-corpo strong { font-weight: 400; }
+.seccao-corpo a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; }
+.seccao-corpo ul { margin: 0; padding-left: 1.2em; }
+.alineas { list-style: none; margin: 0; padding: 0; counter-reset: alinea; }
+.alineas li { counter-increment: alinea; padding-left: 1.8em; position: relative; }
+.alineas li + li { margin-top: .35em; }
+.alineas li::before { content: counter(alinea, lower-alpha) ")"; position: absolute; left: 0; }
+.mensagem { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 1.5em; }
+
+/* Botão "Enviar": o triângulo vermelho do desenho */
+.botao-enviar {
+  position: relative; display: inline-block; width: 83px; height: 68px; flex: none;
+  color: #fff; text-transform: uppercase; font-weight: 400;
+}
+.botao-enviar svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.botao-enviar svg path { fill: var(--vermelho); transition: fill .15s; }
+.botao-enviar span { position: absolute; left: 5px; top: 28px; }
+.botao-enviar:hover, .botao-enviar:focus-visible { color: #fff; }
+.botao-enviar:hover svg path, .botao-enviar:focus-visible svg path { fill: var(--preto); }
+.seccao-corpo .botao-enviar { text-decoration: none; }
+
+.aviso { font-size: var(--corpo); font-weight: 300; line-height: 1.35; max-width: 980px; padding: 20px 5px; }
+
+/* ---------- Rodapé ---------- */
+.site-footer { padding: 150px var(--margem) var(--margem); text-transform: uppercase; }
+.site-footer p { margin: 0; }
+
+/* ---------- Entrada animada (só na página inicial) ---------- */
+.intro {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  background: #fff;
+  animation: intro-fundo .5s ease-in-out .9s forwards, intro-sair .6s ease 2.3s forwards;
+  cursor: pointer;
+}
+.intro svg { width: min(461px, 72vw); height: auto; animation: intro-logo .7s ease-out both; }
+.no-intro .intro { display: none; }
+@keyframes intro-fundo { to { background: var(--cinza-2); } }
+@keyframes intro-sair { to { opacity: 0; visibility: hidden; } }
+@keyframes intro-logo { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .intro { display: none; } body { transition: none; } }
+
+/* ---------- iPad (até 1199px) ---------- */
+@media (max-width: 1199px) {
+  :root {
+    --grande: clamp(22px, 2.93vw, 34px);   /* 30px a 1024px */
+    --orgaos: clamp(16px, 1.95vw, 22px);   /* 20px a 1024px */
+    --bloco-a: var(--cinza-1);
+    --bloco-b: var(--cinza-1);
+  }
+  .pagina-inicial { --fundo: #fff; }
+  .brand { grid-column: 1 / 5; }
+  .nav-wrap { grid-column: 5 / 13; grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .nav-list { grid-column: 1 / 5; }
+  .nav-adesao { grid-column: 5 / 9; }
+  .hero::before { padding-top: 26.6%; }    /* 267/1004 */
+}
+
+/* ---------- Telemóvel (até 699px) ---------- */
+@media (max-width: 699px) {
+  :root { --margem: 5px; --pad: 5px; --ui: 12px; --corpo: 14px; --grande: 18px; --orgaos: 13px; }
+  .site-header { display: flex; justify-content: space-between; align-items: baseline; }
+  .brand-long { display: none; }
+  .brand-short { display: inline; }
+  .menu-toggle {
+    display: block; background: none; border: 0; padding: 0; margin: 0;
+    font: inherit; text-transform: uppercase; color: inherit; cursor: pointer;
+  }
+  .nav-wrap { display: none; position: absolute; left: var(--margem); right: var(--margem); top: 25px; flex-direction: column; text-align: center; }
+  .menu-open .nav-wrap { display: flex; }
+  body.menu-open { --fundo: var(--amarelo); }
+  .nav-list a, .nav-adesao { display: block; align-self: stretch; height: 20px; line-height: 20px; margin-top: -1px; background: var(--cinza-2); }
+  .nav-list li:first-child a { margin-top: 0; }
+  .nav-list a[aria-current="page"], .nav-adesao[aria-current="page"] { background: var(--vermelho); color: var(--preto); }
+  .nav-list a:hover, .nav-adesao:hover { color: var(--preto); background: #d6d6d6; }
+
+  .hero { margin-top: 105px; }
+  .hero::before { padding-top: 28.4%; }          /* 108/380 */
+  .tri { aspect-ratio: 252 / 175; }
+  .tri-b { margin-top: 22.4%; }                  /* 85/380 */
+  .block, .hero .block:first-of-type { margin-top: 0; padding: 0 var(--pad) 1.2em; }
+  .hero .block:first-of-type { padding-top: var(--pad); }
+  .block--right { grid-column: 1 / 13; }
+  .orgaos { margin-top: 40px; }
+
+  .seccoes { margin-top: 70px; }
+  .seccao > summary { min-height: 20px; padding: 3px 5px; }
+  .seccao-corpo { padding: 14px 0 30px; }
+  .site-footer { padding-top: 60px; }
+}
