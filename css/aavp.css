@@ -143,6 +143,65 @@ a:hover, a:focus-visible { color: var(--vermelho); }
 
 .aviso { font-size: var(--corpo); font-weight: 300; line-height: 1.35; max-width: 980px; padding: 20px 5px; }
 
+
+/* ---------- Estatutos e comunicados ---------- */
+.artigo + .artigo { margin-top: 1.6em; }
+.artigo h3 { margin: 0 0 .5em; font-size: inherit; font-weight: 400; }
+.comunicado-titulo { font-weight: 400; text-transform: uppercase; }
+.seccao-corpo p + p { margin-top: 1em; }
+
+/* ---------- Notícias: grelha de cartões ---------- */
+.cartoes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--margem); }
+.cartao {
+  display: flex; flex-direction: column; aspect-ratio: 1 / 1; padding: var(--pad);
+  overflow: hidden; hyphens: manual; -webkit-hyphens: manual;
+}
+.cartao--amarelo { background: var(--amarelo); }
+.cartao--cinza { background: var(--cinza-2); }
+.cartao:hover, .cartao:focus-visible { background: var(--vermelho); color: var(--preto); }
+.cartao-etiqueta, .cartao-data { text-transform: uppercase; font-size: var(--ui); }
+.cartao-titulo {
+  margin-top: .35em;
+  font-family: "Display", "Helvetica Neue", Arial, sans-serif; font-weight: 300;
+  font-size: clamp(30px, 4.17vw, 64px); line-height: 1; letter-spacing: -0.01em;
+  text-transform: uppercase; overflow-wrap: anywhere;
+}
+.cartao-data { margin-top: auto; padding-top: 1em; }
+
+/* ---------- Notícias: janela aberta ---------- */
+.noticias-texto { margin-top: 3em; }
+.js .noticias-texto { margin: 0; }
+.noticia { margin-top: var(--margem); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.js .noticia { display: none; }
+.js .noticia.aberta {
+  display: grid; position: fixed; inset: 0; z-index: 60; margin: 0; overflow-y: auto; overscroll-behavior: contain;
+  background: var(--cinza-1);
+}
+.modal-aberta, .modal-aberta body { overflow: hidden; }
+.noticia-lado { background: var(--cinza-2); padding: var(--pad); }
+.noticia-lado img { display: block; width: 100%; height: auto; margin-top: var(--pad); }
+.noticia-data { margin: 0; text-transform: uppercase; }
+.noticia-texto { background: var(--cinza-1); padding: var(--pad); position: relative; min-height: 100%; }
+.fechar { display: none; }
+.js .fechar {
+  display: inline-block; position: fixed; top: var(--margem); right: var(--margem);
+  background: var(--preto); color: #fff; padding: 3px 8px; text-transform: uppercase; z-index: 2;
+}
+.js .fechar::before { content: "× "; }
+.fechar:hover, .fechar:focus-visible { background: var(--vermelho); color: #fff; }
+.noticia-titulo {
+  margin: 0; font-family: "Display", "Helvetica Neue", Arial, sans-serif; font-weight: 300;
+  font-size: clamp(34px, 4.17vw, 64px); line-height: 1; letter-spacing: -0.01em; text-transform: uppercase;
+  padding-right: 100px; overflow-wrap: break-word;
+}
+.noticia.sem-imagem { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+.noticia-etiqueta { margin: 1.5em 0 1em; font-weight: 400; text-transform: uppercase; }
+.noticia-corpo { font-weight: 300; font-size: var(--corpo); line-height: 1.35; max-width: 640px; }
+.noticia-corpo p { margin: 0; }
+.noticia-corpo p + p { margin-top: 1em; }
+.noticia-corpo a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; overflow-wrap: anywhere; }
+.noticia-corpo strong { font-weight: 400; }
+
 /* ---------- Rodapé ---------- */
 .site-footer { padding: 150px var(--margem) var(--margem); text-transform: uppercase; }
 .site-footer p { margin: 0; }
@@ -176,6 +235,8 @@ a:hover, a:focus-visible { color: var(--vermelho); }
   .nav-list { grid-column: 1 / 5; }
   .nav-adesao { grid-column: 5 / 9; }
   .hero::before { padding-top: 26.6%; }    /* 267/1004 */
+  .cartoes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cartao-titulo { font-size: clamp(26px, 4.6vw, 48px); }
 }
 
 /* ---------- Telemóvel (até 699px) ---------- */
@@ -209,4 +270,10 @@ a:hover, a:focus-visible { color: var(--vermelho); }
   .seccao > summary { min-height: 20px; padding: 3px 5px; }
   .seccao-corpo { padding: 14px 0 30px; }
   .site-footer { padding-top: 60px; }
+  .cartao-titulo { font-size: clamp(18px, 6.2vw, 28px); }
+  .cartao-etiqueta { display: none; }
+  .noticia, .js .noticia.aberta, .noticia.sem-imagem { grid-template-columns: 1fr; align-content: start; }
+  .noticia-texto { min-height: 0; }
+  .noticia-titulo { font-size: 30px; padding-right: 0; }
+  .noticia-lado { padding-top: 30px; }
 }
