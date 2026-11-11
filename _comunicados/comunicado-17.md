@@ -1,0 +1,20 @@
+---
+numero: 17
+data: 2024-02-02
+titulo: "COMO TRANSFORMAR OBRAS DE ARTE EM STAND UP COMEDY: terraplanar a cultura ao nível do marketing rasteiro"
+---
+Na sequência de outras intervenções e decisões pouco felizes do poder político relativamente a obras de arte no espaço público, fomos esta semana mais uma vez negativamente surpreendidos por uma notícia que mostra o desrespeito a que uma obra de arte colocada no espaço público pode estar sujeita, mesmo por uma entidade, como uma Câmara Municipal, que deveria valorizá-la e não ridicularizá-la.
+
+Infelizmente os critérios das políticas públicas para a cultura, e para as Artes Visuais especificamente, continuam a confundir demasiadas vezes cultura com entretenimento e animação cultural.
+
+A AAVP mostra a sua preocupação com o que aconteceu com a escultura “Sou como tu” de Rui Chafes, situada na Avenida da Liberdade, e com outras esculturas que a Junta de Freguesia de Santo António decidiu de forma unilateral incluir neste projeto. Tal demonstra a incapacidade de diálogo com um artista vivo, de avaliação do real valor do património artístico no espaço público, e acentua a tendência contemporânea de tratar a cultura como mais um “produto” para fruição turística e superficial, querendo torná-la inconsequente enquanto matéria de produção de conhecimento.
+
+Na comemoração dos 50 anos do 25 de abril, este protesto terá ainda maior razão de existir. No enfoque prioritário dado à língua, a alguns tropos de civismo liberal e ao pensamento lógico matemático na educação das/os portugueses esquece-se a importância que tem, para o exercício quotidiano da liberdade, a cultura visual, aural e plástica. É a iliteracia visual dos portugueses a grande responsável pela atual facilidade de manipulação das opiniões, dos gostos, da perda de controlo sobre o julgamento individual sobre a veracidade de factos jornalísticos, da constituição de uma cidadania cujo direito único constitui-se em consumir. Neste teatro comum de manipuladores e manipulados através das imagens e dos sons, explica-se este ato “giro e inovador” através da profunda iliteracia cultural de quem o decidiu, ou pior, pela desonestidade política na consciente destruição do valor acrescentado de uma educação do sensível em favor da massificação turística e consequente escravização da cidadania a esse fim.
+
+A AAVP vê, com tristeza e pouca esperança, o panorama cultural para as Artes Visuais na maioria das autarquias: uma cultura que se demite de ser “culta”, que é constantemente subfinanciada e que conta com equipas desqualificadas. Um grave sintoma desta situação é a falta de aposta no preenchimento qualificado da vereação da cultura. Neste quadro, os agentes culturais têm como interlocutores “autarcas programadores” sem capacidades.
+
+A AAVP questiona quando é que os poderes públicos vão respeitar o espaço público e os trabalhos artísticos nele colocados. Falamos de trabalhos artísticos, não de contribuições amadoras que pululam por este Portugal, aberrações estéticas, contratadas ou oferecidas e distribuídas inconsequentemente pelo espaço público nacional. Uma obra de arte tem de ser respeitada — à luz do direito de autor/a e de boas práticas éticas e profissionais — estando num museu ou num espaço público.
+
+Não podemos concordar com um discurso facilitista e imediatista de comunicação que não deveria acontecer quando falamos de cultura e que oblitera a autonomia artística de quem criou uma obra de arte.
+
+Desde a sua origem, no início de 2020, a AAVP tem defendido em exclusivo os interesses das/os Artistas Visuais em Portugal agregando um número crescente de artistas nas suas mais diversas formações, práticas e origens, fomentando o diálogo entre pares e tentando atender às múltiplas urgências do seu frágil ecossistema. A AAVP tem também mantido um diálogo aberto com as estruturas atuantes que perfazem o universo das Artes Visuais em Portugal e com as quais as/os Artistas Visuais contactam no exercício da sua profissão, defendendo que é apenas com a cooperação das partes que se pode chegar ao interesse comum não apenas nas Artes Visuais, mas também na Cultura e no seu impacto social em Portugal.

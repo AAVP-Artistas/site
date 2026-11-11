@@ -1,0 +1,23 @@
+# Site da AAVP — Associação de Artistas Visuais em Portugal
+# Gerado pelo GitHub Pages (Jekyll). As notícias e os comunicados são fichas
+# nas pastas _noticias e _comunicados, editáveis no Pages CMS (app.pagescms.org).
+
+title: "AAVP — Associação de Artistas Visuais em Portugal"
+lang: pt-PT
+
+collections:
+  noticias:
+    output: false
+  comunicados:
+    output: false
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+exclude:
+  - README.md
+  - LEIA-ME.md
+  - Gemfile
+  - Gemfile.lock
