@@ -3,7 +3,7 @@ titulo: Nova direção
 etiqueta: Assembleia Geral
 data: 2026-05-06
 ---
-A AAVP tem nova direção!!
+A AAVP tem nova direção!
 
 No passado dia 6 de maio, a Assembleia-Geral da AAVP elegeu por maioria a Lista A, composta por:
 
