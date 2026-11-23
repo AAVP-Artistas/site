@@ -18,14 +18,20 @@
   --margem: 10px;                        /* margem exterior e intervalo da grelha */
   --pad: 10px;                           /* espaço interior dos blocos */
   --ui: 14px;                            /* menus, barras, rodapé */
-  --corpo: 14px;                         /* texto corrido das páginas interiores */
-  --grande: clamp(34px, 2.78vw, 48px);   /* 40px a 1440px */
-  --orgaos: clamp(20px, 1.667vw, 28px);  /* 24px a 1440px */
+  --corpo: clamp(16px, 1.25vw, 20px);    /* texto corrido das páginas interiores: 18px a 1440px */
+  --grande: clamp(26px, 2.08vw, 36px);   /* texto da página inicial: 30px a 1440px */
+  --orgaos: clamp(17px, 1.39vw, 24px);   /* 20px a 1440px */
   --fundo: var(--cinza-1);
   --bloco-a: var(--cinza-1);
-  --bloco-b: #fff;
+  --bloco-b: var(--cinza-1);
 }
-.pagina-inicial { --fundo: var(--amarelo); }
+
+/* ---------- Proposta colorida: amarelo, cinzento e vermelho ----------
+   Liga-se em _config.yml com "tema: colorido" (põe a classe tema-colorido no <html>). */
+.tema-colorido body { --fundo: var(--amarelo); }
+.tema-colorido .seccao[open] > .seccao-corpo,
+.tema-colorido .aviso { background: var(--cinza-1); padding-left: 10px; padding-right: 10px; }
+.tema-colorido .noticia-texto { background: var(--cinza-1); }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -116,8 +122,8 @@ a:hover, a:focus-visible { color: var(--vermelho); }
   font-weight: 300;
   font-size: var(--corpo);
   line-height: 1.35;
-  max-width: 980px;
 }
+.seccao-corpo > * { max-width: 46em; }
 .seccao-corpo p { margin: 0; }
 .seccao-corpo p + p, .seccao-corpo p + ol, .seccao-corpo p + ul, .seccao-corpo ol + p, .seccao-corpo ul + p { margin-top: 1em; }
 .seccao-corpo strong { font-weight: 400; }
@@ -141,7 +147,8 @@ a:hover, a:focus-visible { color: var(--vermelho); }
 .botao-enviar:hover svg path, .botao-enviar:focus-visible svg path { fill: var(--preto); }
 .seccao-corpo .botao-enviar { text-decoration: none; }
 
-.aviso { font-size: var(--corpo); font-weight: 300; line-height: 1.35; max-width: 980px; padding: 20px 5px; }
+.aviso { font-size: var(--corpo); font-weight: 300; line-height: 1.35; padding: 20px 5px; }
+.aviso > * { max-width: 46em; }
 
 
 /* ---------- Estatutos e comunicados ---------- */
@@ -183,7 +190,7 @@ html:not(.js) .cartao { display: none; }
   overflow-wrap: break-word;
 }
 .noticia-etiqueta { margin: 1.4em 0 1em; font-family: "Display", "Helvetica Neue", Arial, sans-serif; font-weight: 700; text-transform: uppercase; }
-.noticia-corpo { font-weight: 300; font-size: var(--corpo); line-height: 1.35; max-width: 640px; }
+.noticia-corpo { font-weight: 300; font-size: var(--corpo); line-height: 1.4; max-width: 40em; }
 .noticia-corpo p { margin: 0; }
 .noticia-corpo p + p { margin-top: 1em; }
 .noticia-corpo a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; overflow-wrap: anywhere; }
@@ -201,13 +208,12 @@ html:not(.js) .cartao { display: none; }
 .intro {
   position: fixed; inset: 0; z-index: 100;
   display: flex; align-items: center; justify-content: center;
-  background: #fff;
-  animation: intro-fundo .5s ease-in-out .9s forwards, intro-sair .6s ease 2.3s forwards;
+  background: var(--cinza-1);
+  animation: intro-sair .6s ease 2.3s forwards;
   cursor: pointer;
 }
 .intro svg { width: min(461px, 72vw); height: auto; animation: intro-logo .7s ease-out both; }
 .no-intro .intro { display: none; }
-@keyframes intro-fundo { to { background: var(--cinza-2); } }
 @keyframes intro-sair { to { opacity: 0; visibility: hidden; } }
 @keyframes intro-logo { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .intro { display: none; } body { transition: none; } }
@@ -215,12 +221,12 @@ html:not(.js) .cartao { display: none; }
 /* ---------- iPad (até 1199px) ---------- */
 @media (max-width: 1199px) {
   :root {
-    --grande: clamp(22px, 2.93vw, 34px);   /* 30px a 1024px */
-    --orgaos: clamp(16px, 1.95vw, 22px);   /* 20px a 1024px */
+    --grande: clamp(20px, 2.35vw, 28px);   /* 24px a 1024px */
+    --orgaos: clamp(15px, 1.76vw, 19px);   /* 18px a 1024px */
+    --corpo: 17px;
     --bloco-a: var(--cinza-1);
     --bloco-b: var(--cinza-1);
   }
-  .pagina-inicial { --fundo: #fff; }
   .brand { grid-column: 1 / 5; }
   .nav-wrap { grid-column: 5 / 13; grid-template-columns: repeat(8, minmax(0, 1fr)); }
   .nav-list { grid-column: 1 / 5; }
@@ -231,7 +237,7 @@ html:not(.js) .cartao { display: none; }
 
 /* ---------- Telemóvel (até 699px) ---------- */
 @media (max-width: 699px) {
-  :root { --margem: 5px; --pad: 5px; --ui: 12px; --corpo: 14px; --grande: 18px; --orgaos: 13px; }
+  :root { --margem: 5px; --pad: 5px; --ui: 12px; --corpo: 16px; --grande: 16px; --orgaos: 13px; }
   .site-header { display: flex; justify-content: space-between; align-items: baseline; }
   .brand-long { display: none; }
   .brand-short { display: inline; }
@@ -242,7 +248,7 @@ html:not(.js) .cartao { display: none; }
   .nav-wrap { display: none; position: absolute; left: var(--margem); right: var(--margem); top: 25px; flex-direction: column; text-align: center; }
   .menu-open .nav-wrap { display: flex; }
   body.menu-open { --fundo: var(--cinza-1); }
-  body.pagina-inicial.menu-open { --fundo: var(--amarelo); }
+  .tema-colorido body.menu-open { --fundo: var(--amarelo); }
   .nav-list a, .nav-adesao { display: block; align-self: stretch; height: 20px; line-height: 20px; margin-top: -1px; background: var(--cinza-2); }
   .nav-list li:first-child a { margin-top: 0; }
   .nav-list a[aria-current="page"], .nav-adesao[aria-current="page"] { background: var(--vermelho); color: var(--preto); }
