@@ -1,0 +1,92 @@
+# Configuração do editor Pages CMS (https://app.pagescms.org)
+# Define os formulários de Notícias e Comunicados de imprensa.
+
+media:
+  - name: imagens
+    label: Imagens das notícias
+    input: img/noticias
+    output: img/noticias
+    categories: [image]
+    rename: safe
+
+content:
+  - name: noticias
+    label: Notícias
+    type: collection
+    path: _noticias
+    filename: "{data}-{titulo}.md"
+    view:
+      fields: [titulo, data]
+      primary: titulo
+      sort: [data, titulo]
+      default:
+        sort: data
+        order: desc
+    fields:
+      - name: titulo
+        label: Título
+        type: string
+        required: true
+        description: Aparece em letras grandes no cartão e no topo da notícia. Curto, de preferência (2 a 5 palavras).
+      - name: etiqueta
+        label: Etiqueta
+        type: string
+        description: Linha pequena por cima do título no cartão e subtítulo a negrito na notícia (ex. Assembleia Geral).
+      - name: data
+        label: Data
+        type: date
+        required: true
+        description: A data define a ordem e o número da notícia. No site aparece só o mês e o ano.
+        options:
+          format: yyyy-MM-dd
+      - name: imagens
+        label: Imagens
+        type: image
+        description: Opcional. Aparecem à esquerda, pela ordem em que estão aqui. JPG ou PNG, até cerca de 1500 px de largura.
+        options:
+          media: imagens
+          multiple:
+            max: 6
+          extensions: [jpg, jpeg, png, webp]
+          rename: safe
+      - name: body
+        label: Texto
+        type: rich-text
+        options:
+          format: markdown
+          media: false
+
+  - name: comunicados
+    label: Comunicados de imprensa
+    type: collection
+    path: _comunicados
+    filename: "comunicado-{numero}.md"
+    view:
+      fields: [numero, data, titulo]
+      primary: numero
+      sort: [numero, data]
+      default:
+        sort: numero
+        order: desc
+    fields:
+      - name: numero
+        label: Número
+        type: number
+        required: true
+        description: O número a seguir ao do último comunicado publicado.
+      - name: data
+        label: Data
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: titulo
+        label: Título
+        type: string
+        description: Opcional. Aparece em maiúsculas no início do comunicado.
+      - name: body
+        label: Texto
+        type: rich-text
+        options:
+          format: markdown
+          media: false

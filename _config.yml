@@ -5,6 +5,9 @@
 title: "AAVP — Associação de Artistas Visuais em Portugal"
 lang: pt-PT
 
+# Aspeto do site: "sobrio" (paleta do desenho da Raquel) ou "colorido" (com fundo amarelo)
+tema: sobrio
+
 collections:
   noticias:
     output: false
