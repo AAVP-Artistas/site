@@ -52,6 +52,7 @@ content:
       - name: body
         label: Texto
         type: rich-text
+        description: "Para colar texto de outro documento, e-mail ou página, usar Ctrl+Shift+V (no Mac, Cmd+Shift+V): cola sem formatação, sem negritos nem tipos de letra. Os negritos que forem precisos aplicam-se depois, com o botão B."
         options:
           format: markdown
           media: false
@@ -87,6 +88,7 @@ content:
       - name: body
         label: Texto
         type: rich-text
+        description: "Para colar texto de outro documento, e-mail ou página, usar Ctrl+Shift+V (no Mac, Cmd+Shift+V): cola sem formatação, sem negritos nem tipos de letra. Os negritos que forem precisos aplicam-se depois, com o botão B."
         options:
           format: markdown
           media: false
