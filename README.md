@@ -140,6 +140,29 @@ Ao enviar ficheiros pelo GitHub (**Add file → Upload files**), arrastar **as p
 
 ---
 
+## Cópias de segurança
+
+O GitHub guarda o histórico de todas as alterações (aba **Commits**), o que protege contra enganos do dia a dia. A cópia de segurança protege contra o resto: perda de acesso à conta, repositório apagado por engano, problemas do serviço ou mudança futura para outro alojamento.
+
+**Como fazer:**
+
+1. Na página do repositório, botão verde **Code** → **Download ZIP**. O zip contém o site inteiro: páginas, notícias, comunicados, imagens, PDF e configuração (incluindo o `.pages.yml`). Não inclui o histórico de alterações, que não é preciso para repor o site.
+2. Guardar o zip no Google Drive da associação (aavp.artistas@gmail.com), na pasta **Site – cópias de segurança**, com a data no nome: `site-aavp-AAAA-MM-DD.zip`.
+3. Manter pelo menos as três cópias mais recentes.
+
+**Quando fazer:** depois de cada mudança grande (desenho, menu, páginas fixas, órgãos sociais) e, além disso, de três em três meses.
+
+**Guardar também, na mesma pasta:**
+
+- o ficheiro de desenho do site, `AAVP.fig` (Figma, da designer Raquel), que é a origem do desenho;
+- este README, para quem precise de repor o site sem acesso ao GitHub.
+
+**Não guardar na mesma pasta:** palavras-passe e códigos de recuperação. Ficam no local próprio das credenciais da associação, com acesso restrito à direção.
+
+**Para repor o site a partir de uma cópia:** criar um repositório novo numa conta GitHub da associação, enviar o conteúdo do zip mantendo as pastas (ver "Estrutura do repositório"), ativar **Settings → Pages → Deploy from a branch** (`main`, `/ (root)`), voltar a ligar o domínio e reinstalar o Pages CMS nesse repositório.
+
+---
+
 ## Domínio próprio
 
 _(Secção a completar quando o domínio for ligado.)_
