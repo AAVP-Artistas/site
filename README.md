@@ -28,11 +28,13 @@ Lista do que existe e de onde se recupera. **As credenciais não ficam aqui**: g
 | Gmail **aavp.artistas@gmail.com** | É a chave de tudo: recupera a conta GitHub e recebe os convites do Pages CMS. | Telefone e e-mail de recuperação definidos no Gmail: devem pertencer à associação ou a mais do que uma pessoa da direção. |
 | GitHub **AAVP-Artistas** | Dona deste repositório e do site. Dá acesso total ao Pages CMS. | Palavra-passe recuperável pelo Gmail acima. A verificação em dois passos tem **códigos de recuperação**, guardados com as credenciais da associação (GitHub → Settings → Password and authentication). |
 | Pages CMS | Formulários de notícias e comunicados. A aplicação está instalada na conta AAVP-Artistas, no repositório `site`. | Entra-se com a conta GitHub da AAVP ou com um convite por e-mail. |
-| dominios.pt | Registo do domínio **aavp.pt**. Paga-se a renovação anual; se não for renovado, o site, o e-mail @aavp.pt e a newsletter deixam de funcionar. | Área de cliente: https://my.dominios.pt. Titular e e-mail da conta: _(a preencher)_. Data de renovação: _(a preencher)_. Suporte: 210 081 081 (dias úteis, 9h–18h). |
+| dominios.pt | Registo do domínio **aavp.pt**. Paga-se a renovação anual; se não for renovado, o site, o e-mail @aavp.pt e o boletim deixam de funcionar. | Área de cliente: https://my.dominios.pt. Conta em nome da associação, com o e-mail aavp.artistas@gmail.com. Próxima renovação: **19 de julho de 2027** (renova-se todos os anos nessa data). Suporte: 210 081 081 (dias úteis, 9h–18h). |
 | Cloudflare | DNS do domínio e reencaminhamento do e-mail @aavp.pt (Email Routing). Gratuita. | Conta criada com o Gmail acima, com verificação em dois passos. Os códigos de recuperação ficam guardados com as credenciais da associação. |
-| Brevo | Envio da newsletter. Plano gratuito. | _(a criar com o Gmail acima)_ |
+| Brevo | Envio do boletim (newsletter). Plano gratuito. | _(a criar com o Gmail acima)_ |
 
-**Credenciais guardadas em:** _(a preencher pela direção, por exemplo um gestor de palavras-passe partilhado)_
+**Credenciais guardadas em:** gestor de palavras-passe da conta Google da associação (aavp.artistas@gmail.com), em https://passwords.google.com.
+
+A palavra-passe do próprio Gmail e os códigos de recuperação dele não podem ficar só aí, porque quem perde o acesso ao Gmail perde também o acesso a eles. Têm de estar guardados também fora da conta, por pelo menos duas pessoas da direção.
 
 ### Quando alguém sai da direção
 
@@ -212,22 +214,30 @@ Nessa página, a bolinha tem de estar em **"Usar nameservers personalizados"** a
 
 ## E-mail @aavp.pt
 
-Os endereços @aavp.pt não têm caixa de correio própria. A Cloudflare reencaminha-os (**Email Routing**, gratuito) para **aavp.artistas@gmail.com**. Servem para **receber**. Para enviar a newsletter usa-se a Brevo.
+Os endereços @aavp.pt não têm caixa de correio própria. A Cloudflare reencaminha-os (**Email Routing**, gratuito) para caixas que já existem, como **aavp.artistas@gmail.com**. Servem para **receber**. Para enviar o boletim usa-se a Brevo.
 
-Endereços ativos: _(a preencher quando o Email Routing for ativado, por exemplo geral@aavp.pt e newsletter@aavp.pt)_
+Endereços ativos (novembro de 2026):
 
-- Os endereços criam-se e apagam-se na Cloudflare, em **Email Routing** (zona aavp.pt). O destino tem de estar verificado: a Cloudflare manda um e-mail de confirmação para o Gmail.
-- Ao ativar o serviço, a Cloudflare cria os registos MX e SPF de que precisa. **Não os apagar.**
+| Endereço | Para quê |
+|---|---|
+| geral@aavp.pt | Contacto geral da associação |
+| boletim@aavp.pt | Remetente do boletim; recebe as respostas |
+| mesa@aavp.pt | Mesa da Assembleia Geral |
+
+Para onde vai cada endereço vê-se na Cloudflare, em **Email Routing → Routing rules**. Cada endereço tem um só destino.
+
+- Os endereços criam-se e apagam-se na Cloudflare, em **Email Routing** (zona aavp.pt). O destino tem de estar verificado: a Cloudflare manda um e-mail de confirmação para esse endereço.
+- Ao ativar o serviço, a Cloudflare cria os registos MX e TXT de que precisa. **Não os apagar.**
 
 ---
 
-## Newsletter (Brevo)
+## Boletim (Brevo)
 
 _(A configurar.)_
 
 - Conta Brevo criada com o Gmail da associação. O plano gratuito permite 300 envios por dia. Uma lista maior envia-se em dias seguidos, com a opção **Requeue**. O selo "Sent with Brevo" não se pode retirar no plano gratuito.
 - Antes do primeiro envio, é preciso **autenticar o domínio aavp.pt na Brevo** (página **Domains**). A Brevo dá três registos (Brevo code, DKIM e DMARC), que se acrescentam na Cloudflare. Sem isto, a Brevo troca o remetente por um endereço @brevosend.com e as mensagens tendem a ir para o spam.
-- O remetente é um endereço @aavp.pt (por exemplo newsletter@aavp.pt). Esse endereço deve existir também no Email Routing, para as respostas chegarem ao Gmail.
+- O remetente é **boletim@aavp.pt**, que já existe no Email Routing: as respostas ao boletim chegam por aí.
 
 ---
 
