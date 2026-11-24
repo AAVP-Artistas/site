@@ -2,8 +2,8 @@
 
 Este repositório contém o site da AAVP. Este documento explica como o site funciona, como se publica e o que é preciso saber para passar o trabalho a outra pessoa.
 
-**Endereço provisório:** https://aavp-artistas.github.io/site/
-**Domínio próprio:** ainda por ligar (ver "Domínio próprio", mais abaixo).
+**Endereço:** https://aavp.pt
+**Endereço do GitHub:** https://aavp-artistas.github.io/site/ (reencaminha para aavp.pt)
 
 > **Atenção:** este repositório é público. Nunca escrever aqui palavras-passe, códigos de recuperação nem dados pessoais.
 
@@ -15,6 +15,7 @@ Este repositório contém o site da AAVP. Este documento explica como o site fun
 - O **GitHub Pages** monta o site a partir dos ficheiros deste repositório, sempre que há uma alteração. Demora um a dois minutos.
 - **Notícias** e **comunicados de imprensa** são fichas (pequenos ficheiros de texto) nas pastas `_noticias` e `_comunicados`. Editam-se num formulário, no **Pages CMS** (https://app.pagescms.org), sem mexer em código.
 - As restantes páginas (Sobre, Estatutos, Apoios, Contactos, Adesão) mudam pouco e editam-se diretamente nos ficheiros.
+- O domínio **aavp.pt** está registado no **dominios.pt**, mas os registos de DNS (para onde vão o site e o e-mail) estão na **Cloudflare**. Ver "Domínio próprio".
 
 ---
 
@@ -27,15 +28,17 @@ Lista do que existe e de onde se recupera. **As credenciais não ficam aqui**: g
 | Gmail **aavp.artistas@gmail.com** | É a chave de tudo: recupera a conta GitHub e recebe os convites do Pages CMS. | Telefone e e-mail de recuperação definidos no Gmail: devem pertencer à associação ou a mais do que uma pessoa da direção. |
 | GitHub **AAVP-Artistas** | Dona deste repositório e do site. Dá acesso total ao Pages CMS. | Palavra-passe recuperável pelo Gmail acima. A verificação em dois passos tem **códigos de recuperação**, guardados com as credenciais da associação (GitHub → Settings → Password and authentication). |
 | Pages CMS | Formulários de notícias e comunicados. A aplicação está instalada na conta AAVP-Artistas, no repositório `site`. | Entra-se com a conta GitHub da AAVP ou com um convite por e-mail. |
-| Domínio | Endereço próprio do site. | Registado em: _(a preencher quando o domínio for ligado)_ |
+| dominios.pt | Registo do domínio **aavp.pt**. Paga-se a renovação anual; se não for renovado, o site, o e-mail @aavp.pt e a newsletter deixam de funcionar. | Área de cliente: https://my.dominios.pt. Titular e e-mail da conta: _(a preencher)_. Data de renovação: _(a preencher)_. Suporte: 210 081 081 (dias úteis, 9h–18h). |
+| Cloudflare | DNS do domínio e reencaminhamento do e-mail @aavp.pt (Email Routing). Gratuita. | Conta criada com o Gmail acima, com verificação em dois passos. Os códigos de recuperação ficam guardados com as credenciais da associação. |
+| Brevo | Envio da newsletter. Plano gratuito. | _(a criar com o Gmail acima)_ |
 
 **Credenciais guardadas em:** _(a preencher pela direção, por exemplo um gestor de palavras-passe partilhado)_
 
 ### Quando alguém sai da direção
 
 1. Retirar o convite dessa pessoa no Pages CMS (ver "Convidar e retirar quem edita").
-2. Se a pessoa conhecia as palavras-passe do Gmail ou do GitHub, mudá-las e atualizar o local onde estão guardadas.
-3. Confirmar que a verificação em dois passos do GitHub não ficou presa ao telemóvel dessa pessoa. Se ficou, entrar com os códigos de recuperação e configurar um novo método.
+2. Se a pessoa conhecia palavras-passe (Gmail, GitHub, dominios.pt, Cloudflare, Brevo), mudá-las e atualizar o local onde estão guardadas.
+3. Confirmar que a verificação em dois passos do GitHub e da Cloudflare não ficou presa ao telemóvel dessa pessoa. Se ficou, entrar com os códigos de recuperação e configurar um novo método.
 
 ---
 
@@ -155,23 +158,76 @@ O GitHub guarda o histórico de todas as alterações (aba **Commits**), o que p
 **Guardar também, na mesma pasta:**
 
 - o ficheiro de desenho do site, `AAVP.fig` (Figma, da designer Raquel), que é a origem do desenho;
-- este README, para quem precise de repor o site sem acesso ao GitHub.
+- este README, para quem precise de repor o site sem acesso ao GitHub;
+- a exportação dos registos de DNS da Cloudflare (**DNS → Records → Import and Export → Export**), com a data no nome: `dns-aavp-AAAA-MM-DD.txt`.
 
 **Não guardar na mesma pasta:** palavras-passe e códigos de recuperação. Ficam no local próprio das credenciais da associação, com acesso restrito à direção.
 
-**Para repor o site a partir de uma cópia:** criar um repositório novo numa conta GitHub da associação, enviar o conteúdo do zip mantendo as pastas (ver "Estrutura do repositório"), ativar **Settings → Pages → Deploy from a branch** (`main`, `/ (root)`), voltar a ligar o domínio e reinstalar o Pages CMS nesse repositório.
+**Para repor o site a partir de uma cópia:** criar um repositório novo numa conta GitHub da associação, enviar o conteúdo do zip mantendo as pastas (ver "Estrutura do repositório"), ativar **Settings → Pages → Deploy from a branch** (`main`, `/ (root)`), voltar a ligar o domínio e reinstalar o Pages CMS nesse repositório. Para voltar a ligar o domínio: escrever `aavp.pt` em **Custom domain** no repositório novo. Se a conta GitHub tiver outro nome, atualizar também na Cloudflare o CNAME `www`, que aponta para `<nome-da-conta>.github.io`.
 
 ---
 
-## Domínio próprio
+## Domínio próprio (aavp.pt)
 
-_(Secção a completar quando o domínio for ligado.)_
+O domínio envolve três serviços:
 
-1. No repositório: **Settings → Pages → Custom domain**, escrever o domínio e gravar. O GitHub cria um ficheiro `CNAME` na raiz, que **não deve ser apagado**.
-2. No registo do domínio, configurar o DNS:
-   - registos **A** do domínio para `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e `185.199.111.153`;
-   - registo **CNAME** de `www` para `aavp-artistas.github.io`.
-3. Quando o GitHub confirmar o domínio, ativar **Enforce HTTPS** na mesma página.
+| O quê | Onde |
+|---|---|
+| Registo do domínio e renovação anual | dominios.pt |
+| DNS: os registos que dizem para onde vão o site e o e-mail | Cloudflare |
+| O site | GitHub Pages (este repositório) |
+
+No dominios.pt, o domínio aponta para os servidores de nomes da Cloudflare (**Domínios → Gerir domínio → Servidores de Nome**, opção "Usar nameservers personalizados"):
+
+- `desiree.ns.cloudflare.com`
+- `tanner.ns.cloudflare.com`
+
+Nessa página, a bolinha tem de estar em **"Usar nameservers personalizados"** antes de carregar em **Alterar Nameservers**. Se ficar em "padrão", o painel ignora os campos e volta a pôr os servidores do dominios.pt.
+
+**Todos os registos de DNS se alteram na Cloudflare** (aavp.pt → **DNS → Records**). A tabela de registos que aparece no painel do dominios.pt deixou de ter efeito: não vale a pena mexer lá.
+
+### Registos do site (na Cloudflare)
+
+| Tipo | Nome | Conteúdo | Proxy status |
+|---|---|---|---|
+| A | `@` | `185.199.108.153` | DNS only |
+| A | `@` | `185.199.109.153` | DNS only |
+| A | `@` | `185.199.110.153` | DNS only |
+| A | `@` | `185.199.111.153` | DNS only |
+| CNAME | `www` | `aavp-artistas.github.io` | DNS only |
+
+**Estes registos têm de ficar em "DNS only" (nuvem cinzenta).** Com a nuvem laranja, o GitHub deixa de conseguir emitir e renovar o certificado HTTPS.
+
+### No GitHub
+
+**Settings → Pages → Custom domain**: `aavp.pt`, com **Enforce HTTPS** ativo. O GitHub guarda o domínio num ficheiro `CNAME` na raiz do repositório, que **não deve ser apagado**.
+
+### Cuidados
+
+- Só pode haver **um** registo SPF (um TXT em `@` que começa por `v=spf1`) e **um** registo DMARC (TXT em `_dmarc`). Para juntar um serviço novo de e-mail, edita-se o registo existente em vez de criar outro.
+- As opções da Cloudflare sobre robôs e IA não têm efeito neste site, porque as visitas vão diretamente para o GitHub (DNS only).
+- Para cópia, a lista de registos exporta-se em **DNS → Records → Import and Export → Export** (ver "Cópias de segurança").
+
+---
+
+## E-mail @aavp.pt
+
+Os endereços @aavp.pt não têm caixa de correio própria. A Cloudflare reencaminha-os (**Email Routing**, gratuito) para **aavp.artistas@gmail.com**. Servem para **receber**. Para enviar a newsletter usa-se a Brevo.
+
+Endereços ativos: _(a preencher quando o Email Routing for ativado, por exemplo geral@aavp.pt e newsletter@aavp.pt)_
+
+- Os endereços criam-se e apagam-se na Cloudflare, em **Email Routing** (zona aavp.pt). O destino tem de estar verificado: a Cloudflare manda um e-mail de confirmação para o Gmail.
+- Ao ativar o serviço, a Cloudflare cria os registos MX e SPF de que precisa. **Não os apagar.**
+
+---
+
+## Newsletter (Brevo)
+
+_(A configurar.)_
+
+- Conta Brevo criada com o Gmail da associação. O plano gratuito permite 300 envios por dia. Uma lista maior envia-se em dias seguidos, com a opção **Requeue**. O selo "Sent with Brevo" não se pode retirar no plano gratuito.
+- Antes do primeiro envio, é preciso **autenticar o domínio aavp.pt na Brevo** (página **Domains**). A Brevo dá três registos (Brevo code, DKIM e DMARC), que se acrescentam na Cloudflare. Sem isto, a Brevo troca o remetente por um endereço @brevosend.com e as mensagens tendem a ir para o spam.
+- O remetente é um endereço @aavp.pt (por exemplo newsletter@aavp.pt). Esse endereço deve existir também no Email Routing, para as respostas chegarem ao Gmail.
 
 ---
 
@@ -180,6 +236,9 @@ _(Secção a completar quando o domínio for ligado.)_
 - **A alteração não aparece:** esperar dois minutos e recarregar com Ctrl+Shift+R. Na aba **Actions** do repositório, a última execução de *pages build and deployment* deve estar a verde. Se estiver a vermelho, abrir e ler a mensagem de erro.
 - **Páginas sem estilo, ou com código à vista** (por exemplo `{% for` ou `layout: base`): faltam as pastas com `_`, ou o GitHub Pages não está em **Settings → Pages → Deploy from a branch** (`main`, `/ (root)`), ou existe um ficheiro `.nojekyll`, que deve ser apagado.
 - **O Pages CMS não mostra Notícias nem Comunicados:** falta o ficheiro `.pages.yml` na raiz, ou perdeu o ponto no início do nome.
+- **O site não abre em aavp.pt, ou abre sem cadeado (https):** confirmar na Cloudflare que os registos do site estão como na tabela de "Domínio próprio" e em DNS only, e que o ficheiro `CNAME` continua na raiz do repositório. Em **Settings → Pages**, o domínio deve aparecer com o visto verde. Se não aparecer, apagar o domínio, gravar, voltar a escrevê-lo e gravar outra vez: isso repete a verificação.
+- **Os e-mails para @aavp.pt não chegam:** na Cloudflare, em Email Routing, confirmar que o endereço existe e que o destino está verificado. Confirmar também que os registos MX não foram apagados.
+- **Nada funciona (site, e-mail):** confirmar no dominios.pt que o domínio está renovado e que os servidores de nomes continuam a ser os da Cloudflare.
 
 ---
 
